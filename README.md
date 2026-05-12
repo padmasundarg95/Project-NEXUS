@@ -72,7 +72,7 @@ Project NEXUS is designed as a modular, multi-stage agentic system that follows 
 
 ---
 
-## Phase 2: The RAG Engine (Retrieval-Augmented Generation)
+## PHASE 2: THE RAG ENGINE (Retrieval-Augmented Generation)
 
 In this phase, **Project NEXUS** evolves from a static data collection tool into an **Intelligent Query Engine**. By leveraging Vector Embeddings and a Persistent Database, the system can now "read" through the entire blog portfolio to provide fact-based, context-aware answers.
 
