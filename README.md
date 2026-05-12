@@ -72,15 +72,25 @@ Project NEXUS is designed as a modular, multi-stage agentic system that follows 
 
 ---
 
-## Future (Phase 2) Roadmap: RAG + Analytics
-Phase 1 focused on autonomous synthesis; Phase 2 evolves the architecture into an interactive ecosystem—integrating a RAG-powered search engine for conversational intelligence and Looker dashboards for deep-dive analytics.
+## Phase 2: The RAG Engine (Retrieval-Augmented Generation)
 
-#### **1. Retrieval-Augmented Generation (RAG) Engine**
-* **Vector Memory Integration:** Implementing **Vector Embeddings** to transform the blog portfolio into a searchable knowledge base.
-* **Conversational Intelligence:** Developing a semantic similarity search interface to allow for real-time, conversational Q&A across a decade of content.
+In this phase, **Project NEXUS** evolves from a static data collection tool into an **Intelligent Query Engine**. By leveraging Vector Embeddings and a Persistent Database, the system can now "read" through the entire blog portfolio to provide fact-based, context-aware answers.
 
-#### **2. Looker Intelligence Dashboard**
-Transforming synthesized metrics into high-fidelity visual KPIs to track professional evolution:
-* **Growth Vector Trend:** A time-series line chart tracking **Critic Ratings** and **Sentiment Scores** to visualize career trajectory.
-* **Genre Distribution:** Content diversity mapping via pie and donut charts to analyze narrative versatility.
-* **The "Superpower" Heatmap:** A Treemap visualization of **Transferable Skills** to provide a data-backed demonstration of professional core competencies.
+### Technical Architecture
+The RAG pipeline is organized into four critical stages:
+
+1.  **Document Orchestration:** Uses `LangChain` to wrap raw blog content into Document objects, preserving essential **Metadata** (titles and source links).
+2.  **Vectorization:** Converts text chunks into high-dimensional numerical vectors using the `gemini-embedding-2` model.
+3.  **Persistent Storage:** Utilizes `ChromaDB` (stored on Google Drive) to maintain a permanent index of **3,300+ searchable slices**, ensuring the system doesn't need to re-index data every session.
+4.  **Contextual Synthesis:** When a query is made, the engine retrieves the top 5 most relevant slices and passes them to **Llama 3.3 (via Groq)** to generate a response.
+
+### Key AI Terms
+* **RAG (Retrieval-Augmented Generation):** Instead of the AI "guessing" an answer, it first looks up relevant facts in your documents (**Retrieval**) and then uses those facts to write an answer (**Generation**).
+* **Vector Embeddings:** A process of turning words into numbers so the computer can understand "meaning." Similar topics will have mathematical values that are "close" to each other.
+* **Vector Database (ChromaDB):** A specialized library that stores these numbers and allows for high-speed similarity searches across thousands of documents.
+* **Metadata:** "Data about data"—in this project, it includes the blog titles and links used for source attribution.
+
+### Implementation Highlights
+* **Resilience:** Includes **Exponential Backoff** logic (`max_retries=5`) to handle API Quota limits (429 errors) by automatically waiting and retrying.
+* **Precision:** The LLM is configured with a `temperature` of **0.2** to prioritize factual accuracy and minimize "hallucinations" (making up information).
+* **Efficiency:** Uses a `PersistentClient` so that the database is saved to Google Drive, preventing data loss when the Colab session ends.
