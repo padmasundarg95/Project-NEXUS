@@ -19,7 +19,7 @@
 📫 **Contact:** [**LinkedIn**](https://www.linkedin.com/in/padma-sundar-g/) | [**Email**](mailto:padmasundarg95@gmail.com)
 
 ---
-PHASE 1 - NARRATIVE ENGINE
+## <u> **PHASE 1 - NARRATIVE ENGINE** </u> ##
 
 ## <u>**The Mission: A Deep Dive into Narrative Intelligence**</u>
 
